@@ -42,3 +42,9 @@ Simple mode also provides a list of all hashtags used within the dataset, and th
 User list and hashtag lists can be filtered by username and hashtag respectively, by using the 'filter text' field.
 
 Simple mode allows you to search for users who are interested in a subject, and discover other subjects relate to your search that might be relevant to you.  For example, if you searched for "lilbub", and noticed a lot of users also used the hashtag "drawing", you might discover that there is a serious fan art community for various felines that found their fame online. 
+
+### Advanced Mode:
+
+
+### Crashes:
+Simply put, be smart about what you search for.  Do not go to the advanced tab and search for "happy" over the past month.  It will take days to complete, and will most likely crash the process due to low memory, or other resource barriers.  For advanced searching, a simple rule of thumb is to start small.  Always start small, and work your way up.
