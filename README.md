@@ -18,7 +18,6 @@ Usage
 git clone this repo
 cd instagram-miner
 npm install
-node app.js
 ```
 
 Create a config.js file at the app root (same dir as app.js) with your Instagram client ID like so:
@@ -26,6 +25,10 @@ Create a config.js file at the app root (same dir as app.js) with your Instagram
 module.exports = {
   clientId: 'yourInstagramCl!3nt1D';
 };
+```
+
+```
+node app.js
 ```
 
 The web app will be available at http://localhost:3000
