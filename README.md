@@ -1,15 +1,6 @@
 # instagram-miner
 Use this tool to mine Instagram data, and do some social engineering.  
 
-##### Simple Mode:
-Collects the most recently created posts (up to 250) that contain the 'mined' hashtag.  Provides a list of users that used the hashtag, and number of uses (posts that they tagged with it).  Hashtag intersections can be discovered by selecting any number of users and clicking 'compare selected'.  This will show all mutual hashtags within the data collected by the mining process (most recent 250 posts).  
-
-Simple mode also provides a list of all hashtags used within the dataset, and the number of times each hashtag was used (number of posts it was found in).  Similar to the user list, the results in the hashtag list may also be compared for intersections.  Find all users who used a particular hashtag by selecting any number of hashtags in the list, and clicking 'compare selected'.  Search results can also be enriched by adding additional hashtags.
-
-User list and hashtag lists can be filtered by username and hashtag respectively, by using the 'filter text' field.
-
-Simple mode allows you to search for users who are interested in a subject, and discover other subjects relate to your search that might be relevant to you.  For example, if you searched for "lilbub", and noticed a lot of users also used the hashtag "drawing", you might discover that there is a serious fan art community for various felines that found their fame online. 
-
 Prerequisites
 ============
 
@@ -42,3 +33,12 @@ node app.js
 ```
 
 The web app will be available at http://localhost:3000
+
+### Simple Mode:
+Collects the most recently created posts (up to 250) that contain the 'mined' hashtag.  Provides a list of users that used the hashtag, and number of uses (posts that they tagged with it).  Hashtag intersections can be discovered by selecting any number of users and clicking 'compare selected'.  This will show all mutual hashtags within the data collected by the mining process (most recent 250 posts).  
+
+Simple mode also provides a list of all hashtags used within the dataset, and the number of times each hashtag was used (number of posts it was found in).  Similar to the user list, the results in the hashtag list may also be compared for intersections.  Find all users who used a particular hashtag by selecting any number of hashtags in the list, and clicking 'compare selected'.  Search results can also be enriched by adding additional hashtags.
+
+User list and hashtag lists can be filtered by username and hashtag respectively, by using the 'filter text' field.
+
+Simple mode allows you to search for users who are interested in a subject, and discover other subjects relate to your search that might be relevant to you.  For example, if you searched for "lilbub", and noticed a lot of users also used the hashtag "drawing", you might discover that there is a serious fan art community for various felines that found their fame online. 
