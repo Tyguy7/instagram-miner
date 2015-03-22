@@ -13,15 +13,17 @@ client.select(3, function() {
     console.log('connected to redis DB #3');
 });
 
-module.exports = function Miner(io){
+module.exports = function Miner(clientId, io){
 
     return {
+
+        clientId: clientId,
 
         mine: function(hashtag){
 
             io.emit('newTask', {name: hashtag, posts: 0, status: 'starting'});
 
-            instagram.getRecentMediaByTag(hashtag, 250, function(media){
+            instagram.getRecentMediaByTag(clientId, hashtag, 250, function(media){
 
                 io.emit('updateTask', {name: hashtag, posts: media.length, status: 'running'});
 
@@ -180,7 +182,7 @@ module.exports = function Miner(io){
 
             var bounce = false;
 
-            instagram.searchHashtagsWithDate(data.hashtags, data.startDate, data.endDate, function(update){
+            instagram.searchHashtagsWithDate(clientId, data.hashtags, data.startDate, data.endDate, function(update){
 
                 //debounce this 1s
                 if(!bounce || update.status=='idle'){
@@ -262,7 +264,6 @@ module.exports = function Miner(io){
                         if(err) {
                             callback(err);
                         }
-                        //console.log('COMPLETE', item.id);
                         callback();
                     });
 
@@ -310,7 +311,7 @@ module.exports = function Miner(io){
                                                     callback(err);
                                                 }
                                                 row.posts = count;
-                                                //add GEO!
+                                                //TODO: add GEO!
                                                 row.popularity = parseInt(row.comments) + parseInt(row.likes);
                                                 callback();
                                             });

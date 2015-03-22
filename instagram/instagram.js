@@ -1,13 +1,13 @@
 module.exports = function Instagram(request, async){
     
     return {
-        getMediaAdvanced: function(startTime, endTime, lat, lng, dist, callback){
+        getMediaAdvanced: function(clientId, startTime, endTime, lat, lng, dist, callback){
         
             if(!startTime || !endTime || !lat || !lng || !dist || !callback){
                 throw new Error('ERROR! "getMediaNearLocation": Missing parameters');
             }
 
-            var reqUrl = 'https://api.instagram.com/v1/media/search?client_id=1cd764447de846549d70f3159b155eec&MIN_TIMESTAMP='+startTime+'&MAX_TIMESTAMP='+endTime+'&lat='+lat+'&lng='+lng+'&DISTANCE='+dist+'km';
+            var reqUrl = 'https://api.instagram.com/v1/media/search?client_id='+clientId+'&MIN_TIMESTAMP='+startTime+'&MAX_TIMESTAMP='+endTime+'&lat='+lat+'&lng='+lng+'&DISTANCE='+dist+'km';
 
             //console.log('requesting: '+reqUrl);
             process.stdout.write('getting instagram posts');
@@ -21,13 +21,13 @@ module.exports = function Instagram(request, async){
             });
         },
 
-        getUserRecentMedia: function(userId, startTime, endTime, callback){
+        getUserRecentMedia: function(clientId, userId, startTime, endTime, callback){
 
             if(!userId || !startTime || !endTime || !callback){
                 throw new Error('ERROR! "getUserInfo": Missing parameters');
             }
 
-            var reqUrl = 'https://api.instagram.com/v1/users/'+userId+'/media/recent?client_id=1cd764447de846549d70f3159b155eec&MAX_TIMESTAMP='+startTime+'&MAX_TIMESTAMP='+endTime+'&COUNT=5000';
+            var reqUrl = 'https://api.instagram.com/v1/users/'+userId+'/media/recent?client_id='+clientId+'&MAX_TIMESTAMP='+startTime+'&MAX_TIMESTAMP='+endTime+'&COUNT=5000';
 
             console.log('requesting: '+reqUrl);
             process.stdout.write('getting posts by '+userId);
@@ -41,7 +41,7 @@ module.exports = function Instagram(request, async){
             });
         },
 
-        getRecentMediaByTag: function(tag, maxToGet, storageFn, callback){
+        getRecentMediaByTag: function(clientId, tag, maxToGet, storageFn, callback){
 
             if(!tag || !callback){
                 throw new Error('ERROR! "getMediaByTag": Missing parameters');
@@ -60,7 +60,7 @@ module.exports = function Instagram(request, async){
                 },
                 function (cb) {
 
-                    var url = 'https://api.instagram.com/v1/tags/'+tag+'/media/recent?client_id=1cd764447de846549d70f3159b155eec&COUNT='+perpage;
+                    var url = 'https://api.instagram.com/v1/tags/'+tag+'/media/recent?client_id='+clientId+'&COUNT='+perpage;
                     var reqUrl = (pagination && pagination.next_url) ? pagination.next_url : url;
 
                     //wait 500ms between requests
@@ -107,7 +107,7 @@ module.exports = function Instagram(request, async){
             );
         },
 
-        searchHashtagsWithDate: function(hashtags, startDate, endDate, updateFn, callback){
+        searchHashtagsWithDate: function(clientId, hashtags, startDate, endDate, updateFn, callback){
 
             var numHashtags = hashtags.length;
             var gottenPosts = [];
@@ -130,7 +130,7 @@ module.exports = function Instagram(request, async){
                     },
                     function (callback) {
 
-                        var url = 'https://api.instagram.com/v1/tags/'+hashtag+'/media/recent?client_id=1cd764447de846549d70f3159b155eec&max_id='+endDate+'000000&min_id='+startDate+'000000&count='+perpage;
+                        var url = 'https://api.instagram.com/v1/tags/'+hashtag+'/media/recent?client_id='+clientId+'&max_id='+endDate+'000000&min_id='+startDate+'000000&count='+perpage;
                         var reqUrl = (pagination && pagination.next_url) ? pagination.next_url : url;
 
                         //wait 0ms between requests

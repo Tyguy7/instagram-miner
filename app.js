@@ -5,7 +5,6 @@
 
 var express = require('express');
 var routes = require('./routes');
-//var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 
@@ -28,6 +27,9 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+//local config
+var config = require('./config')
+
 app.get('/', routes.index);
 app.get('/advanced', routes.advanced);
 
@@ -37,8 +39,10 @@ var server = http.createServer(app).listen(app.get('port'), function(){
 
 //socket.io
 var io = require('socket.io')(server);
+
+//miner modules
 var Miner = require('./instagram/miner.js');
-var miner = new Miner(io);
+var miner = new Miner(config.clientId, io);
 
 //handle socket events
 io.on('connection', function(socket){
