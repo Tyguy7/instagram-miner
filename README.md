@@ -44,7 +44,7 @@ User list and hashtag lists can be filtered by username and hashtag respectively
 Simple mode allows you to search for users who are interested in a subject, and discover other subjects relate to your search that might be relevant to you.  For example, if you searched for "lilbub", and noticed a lot of users also used the hashtag "drawing", you might discover that there is a serious fan art community for various felines that found their fame online. 
 
 ### Advanced Mode:
-Searches for users who used any of the entered list of hashtags, and returns a list sorted by user's popularity.  Popularity is derived from the total of likes and comments on any posts that contain any of the hashtags queried.  These lists can be very long, and are also available to download in CSV format.
+Searches for users who used any of the entered list of hashtags, and returns a list sorted by user's popularity.  Popularity is derived from the total of likes and comments on any posts that contain any of the hashtags queried.  These lists can be very long, and only the top 50 are display in-browser.  The full list is available to download in CSV format.
 
 
 ### Crashes:
