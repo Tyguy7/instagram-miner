@@ -54,7 +54,7 @@
                 </div>
                 <br />
                 <br />
-                <span ng-show="users.length">+&nbsp;{{users.length - 50}}&nbsp;more...</span>
+                <span ng-show="users.length > 50">+&nbsp;{{users.length - 50}}&nbsp;more...</span>
             </div>
             <div ng-show="selectedTab=='hashtags'" class="small-7 medium-9 large-9 columns left-line">
                 <input type="text" ng-model="hashtagFilterText" placeholder="filter text" />
