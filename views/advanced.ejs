@@ -64,26 +64,28 @@
             <hr />
         </div>
         <div class="row" ng-cloak>
-            <table ng-show="sample.length>0">
-                <div ng-show="sample.length>0">
-                    <h5>Results (top 50 users)</h5>
-                    <a href="{{downloadUrl}}">download csv</a>
-                    <br />
-                </div>
-              <thead>
-                <tr>
-                  <th ng-repeat="th in sampleHeader">{{th}}</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr ng-repeat="tr in sample">
-                  <td ng-repeat="th in sampleHeader">
-                    <span ng-if="th!='username'">{{tr[th]}}</span>
-                    <a ng-if="th=='username'" target="_BLANK" href="http://www.instagram.com/{{tr[th]}}">{{tr[th]}}</a>
-                </td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="small-12 medium-12 large-12 columns">
+                <table ng-show="sample.length>0">
+                    <div ng-show="sample.length>0">
+                        <h5>Results (top 50 users)</h5>
+                        <a href="{{downloadUrl}}">download csv</a>
+                        <br />
+                    </div>
+                  <thead>
+                    <tr>
+                      <th ng-repeat="th in sampleHeader">{{th}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="tr in sample">
+                      <td ng-repeat="th in sampleHeader">
+                        <span ng-if="th!='username'">{{tr[th]}}</span>
+                        <a ng-if="th=='username'" target="_BLANK" href="http://www.instagram.com/{{tr[th]}}">{{tr[th]}}</a>
+                    </td>
+                    </tr>
+                  </tbody>
+                </table>
+            <div>
         </div>
         <div class="row">
             <hr />
