@@ -9,7 +9,6 @@ module.exports = function Instagram(request, async){
 
             var reqUrl = 'https://api.instagram.com/v1/media/search?client_id='+clientId+'&MIN_TIMESTAMP='+startTime+'&MAX_TIMESTAMP='+endTime+'&lat='+lat+'&lng='+lng+'&DISTANCE='+dist+'km';
 
-            //console.log('requesting: '+reqUrl);
             process.stdout.write('getting instagram posts');
             var dots = setInterval(function(){
                 process.stdout.write('.');

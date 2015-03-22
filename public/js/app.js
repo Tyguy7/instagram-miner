@@ -188,7 +188,7 @@ app.controller('advancedController', function($scope){
         var ht = $scope.hashtags.split(',');
         //trim in case of whitespaces, and remove hash
         ht.forEach(function(hashtag, idx){
-            ht[idx] = hashtag.trim().replace(/[\W_]+/g," ");
+            ht[idx] = hashtag.trim().replace(/ /g,"");
         });
         var data = {
             hashtags: ht.filter(function(z){ return z!='';}),
