@@ -27,6 +27,7 @@ module.exports = {
 };
 ```
 
+Launch the app
 ```
 node app.js
 ```
