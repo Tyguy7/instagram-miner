@@ -1,0 +1,120 @@
+<!doctype HTML>
+<html>
+    <head>
+        <title>Instagram Miner</title>
+        <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="/css/foundation.min.css">
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+        <script src="/js/app.js"></script>
+        <script src="https://cdn.socket.io/socket.io-1.2.1.js"></script>
+    </head>
+    <body ng-app="app" ng-controller="indexController">
+        <div class="row">
+            <div class="small-12 medium-12 large-12 columns">
+                <a href="/">simple</a> | <a href="/advanced">advanced</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 medium-12 large-12 columns">
+                <h1>Instagram Miner</h1>
+                <p>Looks up 250 recent posts by hashtag and retrieves user data, and adjacent hashtags.<br/><a ng-click="startOver()">start over&nbsp;&nbsp;<img src="/img/refresh.png" /></a></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-5 medium-3 large-3 columns">
+                <h5>Activity</h5>
+            </div>
+            <div class="small-7 medium-9 large-9 columns tabs">
+                <a ng-click="selectedTab='users'" ng-class="{selected: selectedTab == 'users'}" class="tab">Users</a>
+                <a ng-click="selectedTab='hashtags'" ng-class="{selected: selectedTab == 'hashtags'}" class="tab">Hashtags</a>
+            </div>
+        </div>
+        <div class="row">
+            <hr />
+        </div>
+        <div class="row" ng-cloak>
+            <div class="small-5 medium-3 large-3 columns add-task">
+                <form ng-submit="startMining()">
+                    <input type="text" ng-model="hashtagToMine" placeholder="hashtag to mine" />
+                </form>
+                <a ng-click="startMining()">Go</a>
+                <div ng-repeat="task in tasks" class="task">
+                    <span class="task {{task.status}}">{{task.name}}&nbsp;<small ng-show="task.status=='error'">(err)</small><img style="float:right;" ng-show="task.status=='running'" src="/img/spinner.gif" /></span>
+                </div>
+            </div>
+            <div ng-show="selectedTab=='users'" class="small-7 medium-9 large-9 columns left-line">
+                <input type="text" ng-model="userFilterText" placeholder="filter text" />
+                <a ng-click="compareUsers()">compare selected</a><br/>
+                <span># of posts containing mined hashtags</span>
+                <br />
+                <br />
+                <div ng-repeat="user in users | filter: userFilter | orderBy:'hashtags':true | limitTo: 50" class="user">
+                    <span ng-click="user.selected=!user.selected" class="user" ng-class="{selected: user.selected}">{{user.hashtags}}&nbsp;|&nbsp;{{user.username}}</span>
+                </div>
+                <br />
+                <br />
+                <span ng-show="users.length">+&nbsp;{{users.length - 50}}&nbsp;more...</span>
+            </div>
+            <div ng-show="selectedTab=='hashtags'" class="small-7 medium-9 large-9 columns left-line">
+                <input type="text" ng-model="hashtagFilterText" placeholder="filter text" />
+                <a ng-click="compareHashtags()">compare selected</a><br/>
+                <span># of times hashtag has occurred in posts</span>
+                <br />
+                <br />
+                <div ng-repeat="hashtag in hashtags | filter: hashtagFilter| orderBy:'occurrences':true | limitTo: 25 " class="hashtag">
+                    <span ng-click="hashtag.selected=!hashtag.selected" class="hashtag" ng-class="{selected: hashtag.selected}">{{hashtag.occurrences}}&nbsp;|&nbsp;{{hashtag.name}}</span>
+                </div>
+                <br />
+                <br />
+                <span ng-show="hashtags.length">+&nbsp;{{hashtags.length - 25}}&nbsp;more...</span>
+            </div>
+        </div>
+        <div class="row">
+            <hr />
+        </div>
+        <div class="modal compare-users" ng-show="compareUserModal">
+            <div class="overlay"></div>
+            <div class="content">
+                <div ng-show="loadingComparison" style="text-align:center; width: 100%"><img src="/img/spinner.gif" /></div>
+                <a class="closex" ng-click="compareUserModal=false">x</a>
+                <!-- content -->
+                <div class="row">
+                    <div class="small-6 medium-6 large-6 columns">
+                        <h5>Users</h5>
+                        <hr />
+                        <a href="http://instagram.com/{{user.username}}" target="_BLANK" class="user" ng-repeat="user in userCompareResults.users"><img width="100" height="100" src="{{user.profile_picture}}" />&nbsp;&nbsp;{{user.username}}</a>
+                    </div>
+                    <div class="small-6 medium-6 large-6 columns">
+                        <h5>Shared Hashtags</h5>
+                        <hr />
+                        <span class="hashtag" ng-repeat="hashtag in userCompareResults.sharedHashtags">{{hashtag}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal compare-hashtags" ng-show="compareHashtagModal">
+            <div class="overlay"></div>
+            <div class="content">
+                <div ng-show="loadingComparison" style="text-align:center; width: 100%"><img src="/img/spinner.gif" /></div>
+                <a class="closex" ng-click="compareHashtagModal=false">x</a>
+                <!-- content -->
+                <div class="row">
+                    <div class="small-6 medium-6 large-6 columns">
+                        <h5>Hashtags</h5>
+                        <hr />
+                        <span class="hashtag" ng-repeat="hashtag in hashtagCompareResults.hashtags">{{hashtag.name}}</span>
+                    </div>
+                    <div class="small-6 medium-6 large-6 columns">
+                        <h5>Shared Users</h5>
+                        <hr />
+                        <a href="http://instagram.com/{{user}}" target="_BLANK" class="user" ng-repeat="user in hashtagCompareResults.sharedUsers">{{user}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        window.socket = io.connect('/');
+    </script>
+</html>

@@ -1,0 +1,95 @@
+<!doctype HTML>
+<html>
+    <head>
+        <title>Instagram Miner</title>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+        <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="/css/foundation.min.css">
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+        <script src="/js/app.js"></script>
+        <script src="https://cdn.socket.io/socket.io-1.2.1.js"></script>
+    </head>
+    <body ng-app="app" ng-controller="advancedController">
+        <div class="row">
+            <div class="small-12 medium-12 large-12 columns">
+                <a href="/">simple</a> | <a href="/advanced">advanced</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 medium-12 large-12 columns">
+                <h1>Instagram Miner</h1>
+                <h3>Query by Date</h3>
+                <p>Gets posts containing specified hashtags, within specified date range, and returns a list of users and metadata, ordered by popularity.<br/><a ng-click="startOver()">start over&nbsp;&nbsp;<img src="/img/refresh.png" /></a></p>
+            </div>
+        </div>
+        <div class="row">
+            <form ng-submit="go()">
+                <div class="small-12 medium-12 large-4 columns">
+                    <input ng-disabled="status=='running'" ng-model="hashtags" placeholder="hashtags, comma separated" type="text" />
+                </div>
+                <div class="small-12 medium-6 large-3 columns">
+                    <input ng-disabled="status=='running'" ng-model="startDateStr" datepicker="startDate" mdl="startDate" type="text" placeholder="start date" />
+                </div>
+                <div class="small-12 medium-6 large-3 columns">
+                    <input ng-disabled="status=='running'" ng-model="endDateStr" datepicker mdl="endDate" type="text" placeholder="end date" />
+                </div>
+                <div class="small-12 medium-12 large-2 columns">
+                    <button ng-disabled="status=='running'" class="tiny" type="submit">go</button>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="small-6 medium-3 large-2 columns">
+                <p><small>Status: <span ng-model="status">{{status}}</span></small></p>
+            </div>
+            <div class="small-6 medium-3 large-2 columns">
+                <p><small>Completion: <span ng-model="userCount">{{percentComplete}}%</span></small></p>
+            </div>
+            <div class="small-6 medium-3 large-2 columns">
+                <p><small>Posts: <span ng-model="postCount">{{numPosts}}</span></small></p>
+            </div>
+            <div class="small-6 medium-3 large-6 columns">
+                <p><small>Users: <span ng-model="userCount">{{numUsers}}</span></small></p>
+            </div>
+        </div>
+        <div class="row" ng-show="status!='idle'">
+            <div class="progress small-12 large-12 success round">
+                <span class="meter" style="width: {{percentComplete}}%"></span>
+            </div>
+        </div>
+        <div class="row">
+            <hr />
+        </div>
+        <div class="row" ng-cloak>
+            <table ng-show="sample.length>0">
+                <div ng-show="sample.length>0">
+                    <h5>Results (top 50 users)</h5>
+                    <a href="{{downloadUrl}}">download csv</a>
+                    <br />
+                </div>
+              <thead>
+                <tr>
+                  <th ng-repeat="th in sampleHeader">{{th}}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="tr in sample">
+                  <td ng-repeat="th in sampleHeader">
+                    <span ng-if="th!='username'">{{tr[th]}}</span>
+                    <a ng-if="th=='username'" target="_BLANK" href="http://www.instagram.com/{{tr[th]}}">{{tr[th]}}</a>
+                </td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <hr />
+        </div>
+    </body>
+    <script>
+        window.socket = io.connect('/');
+    </script>
+</html>

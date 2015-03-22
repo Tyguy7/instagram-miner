@@ -1,0 +1,329 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+/* We use this to get basic styling on all basic form elements */
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="week"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+input[type="color"],
+textarea {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  background-color: white;
+  font-family: inherit;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #cccccc;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.75);
+  display: block;
+  font-size: 0.77778rem;
+  margin: 0 0 0.88889rem 0;
+  padding: 0.44444rem;
+  height: 2.05556rem;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  transition: box-shadow 0.45s, border-color 0.45s ease-in-out; }
+  input[type="text"]:focus,
+  input[type="password"]:focus,
+  input[type="date"]:focus,
+  input[type="datetime"]:focus,
+  input[type="datetime-local"]:focus,
+  input[type="month"]:focus,
+  input[type="week"]:focus,
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  input[type="search"]:focus,
+  input[type="tel"]:focus,
+  input[type="time"]:focus,
+  input[type="url"]:focus,
+  input[type="color"]:focus,
+  textarea:focus {
+    box-shadow: 0 0 5px #999999;
+    border-color: #999999; }
+  input[type="text"]:focus,
+  input[type="password"]:focus,
+  input[type="date"]:focus,
+  input[type="datetime"]:focus,
+  input[type="datetime-local"]:focus,
+  input[type="month"]:focus,
+  input[type="week"]:focus,
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  input[type="search"]:focus,
+  input[type="tel"]:focus,
+  input[type="time"]:focus,
+  input[type="url"]:focus,
+  input[type="color"]:focus,
+  textarea:focus {
+    background: #fafafa;
+    border-color: #999999;
+    outline: none; }
+  input[type="text"]:disabled,
+  input[type="password"]:disabled,
+  input[type="date"]:disabled,
+  input[type="datetime"]:disabled,
+  input[type="datetime-local"]:disabled,
+  input[type="month"]:disabled,
+  input[type="week"]:disabled,
+  input[type="email"]:disabled,
+  input[type="number"]:disabled,
+  input[type="search"]:disabled,
+  input[type="tel"]:disabled,
+  input[type="time"]:disabled,
+  input[type="url"]:disabled,
+  input[type="color"]:disabled,
+  textarea:disabled {
+    background-color: #dddddd;
+    cursor: default; }
+  input[type="text"][disabled], input[type="text"][readonly], fieldset[disabled] input[type="text"],
+  input[type="password"][disabled],
+  input[type="password"][readonly], fieldset[disabled]
+  input[type="password"],
+  input[type="date"][disabled],
+  input[type="date"][readonly], fieldset[disabled]
+  input[type="date"],
+  input[type="datetime"][disabled],
+  input[type="datetime"][readonly], fieldset[disabled]
+  input[type="datetime"],
+  input[type="datetime-local"][disabled],
+  input[type="datetime-local"][readonly], fieldset[disabled]
+  input[type="datetime-local"],
+  input[type="month"][disabled],
+  input[type="month"][readonly], fieldset[disabled]
+  input[type="month"],
+  input[type="week"][disabled],
+  input[type="week"][readonly], fieldset[disabled]
+  input[type="week"],
+  input[type="email"][disabled],
+  input[type="email"][readonly], fieldset[disabled]
+  input[type="email"],
+  input[type="number"][disabled],
+  input[type="number"][readonly], fieldset[disabled]
+  input[type="number"],
+  input[type="search"][disabled],
+  input[type="search"][readonly], fieldset[disabled]
+  input[type="search"],
+  input[type="tel"][disabled],
+  input[type="tel"][readonly], fieldset[disabled]
+  input[type="tel"],
+  input[type="time"][disabled],
+  input[type="time"][readonly], fieldset[disabled]
+  input[type="time"],
+  input[type="url"][disabled],
+  input[type="url"][readonly], fieldset[disabled]
+  input[type="url"],
+  input[type="color"][disabled],
+  input[type="color"][readonly], fieldset[disabled]
+  input[type="color"],
+  textarea[disabled],
+  textarea[readonly], fieldset[disabled]
+  textarea {
+    background-color: #dddddd;
+    cursor: default; }
+  input[type="text"].radius,
+  input[type="password"].radius,
+  input[type="date"].radius,
+  input[type="datetime"].radius,
+  input[type="datetime-local"].radius,
+  input[type="month"].radius,
+  input[type="week"].radius,
+  input[type="email"].radius,
+  input[type="number"].radius,
+  input[type="search"].radius,
+  input[type="tel"].radius,
+  input[type="time"].radius,
+  input[type="url"].radius,
+  input[type="color"].radius,
+  textarea.radius {
+    border-radius: 3px; }
+
+form .row .prefix-radius.row.collapse input,
+form .row .prefix-radius.row.collapse textarea,
+form .row .prefix-radius.row.collapse select {
+  border-radius: 0;
+  -webkit-border-bottom-right-radius: 3px;
+  -webkit-border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px; }
+form .row .prefix-radius.row.collapse .prefix {
+  border-radius: 0;
+  -webkit-border-bottom-left-radius: 3px;
+  -webkit-border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px; }
+form .row .postfix-radius.row.collapse input,
+form .row .postfix-radius.row.collapse textarea,
+form .row .postfix-radius.row.collapse select {
+  border-radius: 0;
+  -webkit-border-bottom-left-radius: 3px;
+  -webkit-border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px; }
+form .row .postfix-radius.row.collapse .postfix {
+  border-radius: 0;
+  -webkit-border-bottom-right-radius: 3px;
+  -webkit-border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px; }
+form .row .prefix-round.row.collapse input,
+form .row .prefix-round.row.collapse textarea,
+form .row .prefix-round.row.collapse select {
+  border-radius: 0;
+  -webkit-border-bottom-right-radius: 1000px;
+  -webkit-border-top-right-radius: 1000px;
+  border-bottom-right-radius: 1000px;
+  border-top-right-radius: 1000px; }
+form .row .prefix-round.row.collapse .prefix {
+  border-radius: 0;
+  -webkit-border-bottom-left-radius: 1000px;
+  -webkit-border-top-left-radius: 1000px;
+  border-bottom-left-radius: 1000px;
+  border-top-left-radius: 1000px; }
+form .row .postfix-round.row.collapse input,
+form .row .postfix-round.row.collapse textarea,
+form .row .postfix-round.row.collapse select {
+  border-radius: 0;
+  -webkit-border-bottom-left-radius: 1000px;
+  -webkit-border-top-left-radius: 1000px;
+  border-bottom-left-radius: 1000px;
+  border-top-left-radius: 1000px; }
+form .row .postfix-round.row.collapse .postfix {
+  border-radius: 0;
+  -webkit-border-bottom-right-radius: 1000px;
+  -webkit-border-top-right-radius: 1000px;
+  border-bottom-right-radius: 1000px;
+  border-top-right-radius: 1000px; }
+
+input[type="submit"] {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px; }
+
+
+
+.tabs .tab {
+    display: inline-block;
+    padding: .5rem;
+    margin-right: .5rem;
+}
+.tabs .tab.selected {
+    background-color: #CBEFF9;
+}
+
+.add-task input {
+    width:80%;
+    float:left;
+}
+.add-task a {
+    display:inline-block;
+    padding:.5rem;
+    width:20%;
+}
+.add-task .task span {
+    background-color: #CBEFF9;
+    padding:.4rem;
+    margin-bottom: .4rem;
+    width:100%;
+    display: inline-block;
+    border-radius: 3px;
+}
+.add-task .task span.running {
+    background-color: rgb(179, 245, 188);
+}
+.add-task .task span.error {
+    background-color: rgb(193, 193, 193);
+    color: #777;
+}
+
+.left-line {
+    border-left: 1px solid #ddd;
+}
+
+.user, .hashtag{
+    padding: .1rem;
+    margin: .1rem;
+    display: block;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.user.selected, .hashtag.selected{
+    background-color: rgb(179, 245, 188);
+}
+
+.modal{
+  position: absolute;
+  width: 100%;
+  padding: 10%;
+  top: 0;
+  left: 0;
+}
+.modal .overlay {
+  background: rgba(1,1,1,.5);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.modal .content{
+  background: white;
+  width: 100%;
+  padding: 2rem;
+  border-radius: 10px; 
+  position: relative;
+}
+.modal .content .closex{
+  position: absolute;
+  top: .5rem;
+  right: 1rem;
+  font-size: 1.5rem;
+}
+.progress {
+  background-color: #F6F6F6;
+  height: 1.38889rem;
+  border: 1px solid white;
+  padding: 0.11111rem;
+  margin-bottom: 0.55556rem;
+}
+.progress.rount {
+  border-radius: 999px;
+}
+.progress.round .meter {
+  border-radius: 999px;
+}
+.progress.success .meter {
+  background: #43AC6A;
+  height: 100%;
+  display: block;
+}
+.progress .meter {
+  background: #008CBA;
+  height: 100%;
+  display: block;
+  -webkit-transition: all 500ms ease-in-out;
+  -moz-transition: all 500ms ease-in-out;
+  -ms-transition: all 500ms ease-in-out;
+  -o-transition: all 500ms ease-in-out;
+  transition: all 500ms ease-in-out;
+}
+
+
+
