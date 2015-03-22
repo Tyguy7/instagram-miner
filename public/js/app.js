@@ -170,10 +170,6 @@ app.controller('advancedController', function($scope){
         $scope.$apply(function(){
             $scope.status = 'idle';
             $scope.hashtags = '';
-            // $scope.startDate = '';
-            // $scope.startDateStr = '';
-            // $scope.endDate = '';
-            // $scope.endDateStr = '';
             $scope.percentComplete = '';
             $scope.numPosts = '';
             $scope.numUsers = '';
